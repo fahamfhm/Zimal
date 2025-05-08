@@ -60,7 +60,7 @@ function Spices() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {spices.map((item) => (
             <div key={item.id} className="bg-white border p-6 rounded-xl shadow hover:shadow-green-300 transition-all">
-              <img src={`${backendUrl}${item.image}`} alt={item.name} className="rounded-xl mb-4 w-full h-56 object-cover" />
+              <img src={`${backendUrl}/${item.image}`} alt={item.name} className="rounded-xl mb-4 w-full h-56 object-cover" />
               <h3 className="text-2xl font-bold">{item.name}</h3>
               <p className="text-gray-700">{item.description}</p>
               <p className="text-green-600 font-semibold mb-2">Rs {parseFloat(item.price).toFixed(2)}</p>
