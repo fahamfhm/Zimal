@@ -57,7 +57,7 @@ function Foods() {
           {foods.map((item) => (
             <div key={item.id} className="bg-white border p-6 rounded-xl shadow hover:shadow-green-300 transition-all">
               <img
-                src={`${backendUrl}/${item.image}`} 
+                src={`${backendUrl}${item.image}`} 
                 alt={item.name}
                 className="rounded-xl mb-4 w-full h-56 object-cover"
               />
