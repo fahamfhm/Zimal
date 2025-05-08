@@ -7,9 +7,19 @@ const spicesRoutes = require('./routes/spices.js');
 
 
 
-app.use(cors());
+app.use(cors(
+  {
+    origin:["https://zimal.vercel.app"],
+    methods:["POST","GET"],
+    credentials: true
+  }
+));
 app.use(express.json());
 app.use('/images', express.static('public/images'));
+
+app.get("/", (req, res) => {
+  res.json("Hello");
+})
 
 // Routes
 app.use('/foods', foodRoutes); // All /foods-related endpoints
