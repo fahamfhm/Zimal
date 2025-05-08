@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+
 function Cosmetics() {
   const [cosmetics, setCosmetics] = useState([]);
   const [quantities, setQuantities] = useState({});
 
   useEffect(() => {
-    fetch('http://localhost:5000/cosmetics')
+    fetch(`${backendUrl}/cosmetics`)
       .then(res => res.json())
       .then(data => setCosmetics(data))
       .catch(err => console.error('Fetch error:', err));
@@ -17,6 +20,7 @@ function Cosmetics() {
       [id]: qty
     }));
   };
+
 
   const handleWhatsAppBuy = async (item) => {
     const qty = quantities[item.id] || 1;
@@ -35,7 +39,7 @@ function Cosmetics() {
       }
 
       try {
-        await fetch('http://localhost:5000/cosmetics/update-stock', {
+        await fetch(`${backendUrl}//cosmetics/update-stock`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -57,7 +61,7 @@ function Cosmetics() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {cosmetics.map((item) => (
             <div key={item.id} className="bg-white border p-6 rounded-xl shadow hover:shadow-green-300 transition-all">
-              <img src={`http://localhost:5000${item.image}`} alt={item.name} className="rounded-xl mb-4 w-full h-56 object-cover" />
+              <img src={`${backendUrl}${item.image}`} alt={item.name} className="rounded-xl mb-4 w-full h-56 object-cover" />
               <h3 className="text-2xl font-bold">{item.name}</h3>
               <p className="text-gray-700">{item.description}</p>
               <p className="text-green-600 font-semibold mb-2">Rs {parseFloat(item.price).toFixed(2)}</p>
